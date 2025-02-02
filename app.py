@@ -165,13 +165,16 @@ def predict_from_url():
         
         # Get binary prediction
         prediction = int(model.predict(input_df)[0])
+        print(prediction)
         
         # Determine result based on prediction
           # Assuming 0=phishing, 1=legitimate
+        is_phishing = prediction
         result_text = "Phishing Website Detected" if prediction == 1 else "Legitimate Website"
+        print(result_text)
         
         return jsonify({
-            #'is_phishing': is_phishing,
+            'is_phishing': is_phishing,
             'result': result_text,
             'features': features
         })
