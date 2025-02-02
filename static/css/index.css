@@ -30,7 +30,7 @@ body {
 
 .input-card {
     background: rgba(255,255,255,0.95);
-    border-radius: 15px;
+    border-radius: 5px;
     box-shadow: 0 8px 30px rgba(0,0,0,0.12);
     margin-bottom: 2rem;
     transition: transform 0.3s ease;
@@ -46,14 +46,18 @@ body {
 }
 
 .primary-btn {
-    background: linear-gradient(135deg, var(--primary), var(--secondary));
-    color: white;
+    background: #508dff; /* Light blue color */
+    color: whitesmoke;
     border: none;
-    padding: 0.8rem 2rem;
-    border-radius: 8px;
-    font-weight: 600;
+    padding: 0.5rem 1.2rem; /* Reduced padding for a smaller button */
+    border-radius: 20px; /* Rounded corners */
+    font-weight: 800;
     transition: all 0.3s ease;
+    
+    
 }
+
+
 
 .primary-btn:hover {
     transform: scale(1.05);
