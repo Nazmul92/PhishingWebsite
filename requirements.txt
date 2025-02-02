@@ -1,0 +1,12 @@
+scikit-learn
+xgboost
+mlflow
+pandas
+numpy
+seaborn
+matplotlib
+Flask
+requests
+beautifulsoup4
+python-whois
+gunicorn
