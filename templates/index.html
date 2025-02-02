@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phishing Website Detector</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="{{ url_for('static', filename='css/index.css') }}" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1 class="main-heading">Phishing Website Detection</h1>
+        
+        <div class="input-card">
+            <div class="card-body">
+                <form id="urlForm" onsubmit="return handleSubmit(event)">
+                    <div class="mb-4">
+                        <label for="urlInput" class="form-label">Enter Website URL</label>
+                        <input type="url" class="form-control" id="urlInput" 
+                               placeholder="https://example.com" required>
+                    </div>
+                    <button type="submit" class="primary-btn">
+                        <span class="spinner-border spinner-border-sm loader" role="status"></span>
+                        Analyze URL
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <div class="result-card" id="resultCard">
+            <div class="verdict-card" id="verdictCard">
+                <div class="verdict-icon">
+                    <i class="bi bi-shield-check"></i>
+                </div>
+                <h2 id="verdictText"></h2>
+                <p class="result-message" id="finalResult"></p>
+            </div>
+
+            <div class="analysis-card">
+                <div class="card-body">
+                    <h4 class="analysis-title">
+                        <i class="bi bi-clipboard-data"></i> Detailed Analysis
+                    </h4>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="feature-category">
+                                <h5><i class="bi bi-link-45deg"></i> URL Structure</h5>
+                                <div id="urlFeatures"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="feature-category">
+                                <h5><i class="bi bi-file-earmark-code"></i> Page Content</h5>
+                                <div id="contentFeatures"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JS -->
+    <script>
+        async function handleSubmit(event) {
+            event.preventDefault();
+            const loader = document.querySelector('.loader');
+            const urlInput = document.getElementById('urlInput');
+            const resultCard = document.getElementById('resultCard');
+            const verdictCard = document.getElementById('verdictCard');
+            const verdictText = document.getElementById('verdictText');
+            const finalResult = document.getElementById('finalResult');
+            const urlFeatures = document.getElementById('urlFeatures');
+            const contentFeatures = document.getElementById('contentFeatures');
+
+            loader.style.display = 'inline-block';
+            resultCard.style.display = 'none';
+
+            try {
+                const response = await fetch('/predict_url', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ url: urlInput.value })
+                });
+
+                const data = await response.json();
+                
+                if (response.ok) {
+                    // Update verdict display
+                    if (data.is_phishing) {
+                        verdictCard.className = 'verdict-card phishing';
+                        verdictCard.querySelector('.verdict-icon').innerHTML = 
+                            '<i class="bi bi-shield-slash-fill"></i>';
+                        verdictText.textContent = 'Phishing Detected!';
+                    } else {
+                        verdictCard.className = 'verdict-card legitimate';
+                        verdictCard.querySelector('.verdict-icon').innerHTML = 
+                            '<i class="bi bi-shield-fill-check"></i>';
+                        verdictText.textContent = 'Legitimate Website';
+                    }
+
+                    // Organize features
+                    const urlStructureFeatures = ['Have_IP', 'Have_At', 'URL_Length', 
+                                                 'URL_Depth', 'Redirection', 'TinyURL'];
+                    const contentFeaturesList = ['iFrame', 'Mouse_Over', 'Right_Click', 
+                                                'Web_Forwards', 'DNS_Record', 'Domain_Age'];
+
+                    // Populate features
+                    const createFeatureList = (features) => features.map(([feature, value]) => `
+                        <div class="feature-item">
+                            <span>${feature.replace(/_/g, ' ')}</span>
+                            <span class="badge ${value ? 'risk' : 'safe'}">
+                                ${value ? 'Risk' : 'Safe'}
+                            </span>
+                        </div>
+                    `).join('');
+
+                    urlFeatures.innerHTML = createFeatureList(
+                        Object.entries(data.features)
+                            .filter(([f]) => urlStructureFeatures.includes(f))
+                    );
+                    
+                    contentFeatures.innerHTML = createFeatureList(
+                        Object.entries(data.features)
+                            .filter(([f]) => contentFeaturesList.includes(f))
+                    );
+
+                    resultCard.style.display = 'block';
+                } else {
+                    throw new Error(data.error || 'Analysis failed');
+                }
+            } catch (error) {
+                verdictCard.className = 'verdict-card error';
+                verdictCard.querySelector('.verdict-icon').innerHTML = 
+                    '<i class="bi bi-exclamation-triangle-fill"></i>';
+                verdictText.textContent = 'Error';
+                finalResult.textContent = error.message;
+                resultCard.style.display = 'block';
+            } finally {
+                loader.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>

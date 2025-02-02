@@ -1,0 +1,15 @@
+artifact_uri: file:///c:/Users/nazmul_hossen/phishing-website/PhishingWebsite/mlruns/763969479730494455/1ef2aa4631ed4d6a90a38fa4870a9c0f/artifacts
+end_time: 1738435838446
+entry_point_name: ''
+experiment_id: '763969479730494455'
+lifecycle_stage: active
+run_id: 1ef2aa4631ed4d6a90a38fa4870a9c0f
+run_name: XGBClassifier
+run_uuid: 1ef2aa4631ed4d6a90a38fa4870a9c0f
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1738435832580
+status: 3
+tags: []
+user_id: nazmul_hossen

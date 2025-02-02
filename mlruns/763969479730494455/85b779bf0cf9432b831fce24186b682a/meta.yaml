@@ -1,0 +1,15 @@
+artifact_uri: file:///c:/Users/nazmul_hossen/phishing-website/PhishingWebsite/mlruns/763969479730494455/85b779bf0cf9432b831fce24186b682a/artifacts
+end_time: 1738435832570
+entry_point_name: ''
+experiment_id: '763969479730494455'
+lifecycle_stage: active
+run_id: 85b779bf0cf9432b831fce24186b682a
+run_name: Random Forest
+run_uuid: 85b779bf0cf9432b831fce24186b682a
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1738435827340
+status: 3
+tags: []
+user_id: nazmul_hossen
