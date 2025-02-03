@@ -175,8 +175,8 @@ def predict_from_url():
         
         return jsonify({
             'is_phishing': is_phishing,
-            'result': result_text,
-            'features': features
+            #'result': result_text,
+            #'features': features
         })
         
     except Exception as e:
