@@ -7,23 +7,9 @@
 ![Docker](https://img.shields.io/badge/Docker-20.10-lightblue.svg)
 ![Render](https://img.shields.io/badge/Render-Cloud-deepgreen.svg)
 
-This project focuses on detecting phishing websites using machine learning techniques. The goal is to build a robust model that can accurately classify websites as either phishing or legitimate based on various features extracted from the URL.
-
-## Table of Contents
-
-- [Introduction](#introduction)
-- [Dataset](#dataset)
-- [Features](#features)
-- [Machine Learning Models](#machine-learning-models)
-- [Model Tracking with MLflow](#model-tracking-with-mlflow)
-- [Deployment](#deployment)
-- [Usage](#usage)
-- [API Endpoints](#api-endpoints)
-- [Docker](#docker)
-- [CI/CD with GitHub Actions](#cicd-with-github-actions)
-- [Requirements](#requirements)
-- [Contributing](#contributing)
-- [License](#license)
+## Project Video
+### Click on image to see video demonstration of the project:
+[![Project Video](https://img.youtube.com/vi/ATJ5aS_1BGI/0.jpg)](https://youtube.com/shorts/9iIqQ_KJYv4?feature=share)
 
 ## Introduction
 
