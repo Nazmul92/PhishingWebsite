@@ -9,7 +9,7 @@
 
 ## Project Video
 ### Click on image to see video demonstration of the project:
-[![Project Video](https://img.youtube.com/vi/ATJ5aS_1BGI/0.jpg)](https://youtube.com/shorts/9iIqQ_KJYv4?feature=share)
+[![Project Video](https://github.com/Nazmul92/PhishingWebsite/blob/main/phishing-website-detector.PNG)](https://youtube.com/shorts/9iIqQ_KJYv4?feature=share)
 
 ## Introduction
 
