@@ -7,8 +7,7 @@
 ![Docker](https://img.shields.io/badge/Docker-20.10-lightblue.svg)
 ![Render](https://img.shields.io/badge/Render-Cloud-deepgreen.svg)
 
-## Project Video
-### Click on image to see video demonstration of the project:
+## Project Video  (Click Below Image)
 [![Project Video](https://github.com/Nazmul92/PhishingWebsite/blob/main/phishing-website-detector.PNG)](https://youtube.com/shorts/9iIqQ_KJYv4?feature=share)
 
 ## Introduction
